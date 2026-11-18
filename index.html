@@ -1,0 +1,1081 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ثورة الذكاء الاصطناعي التوليدي — Generative AI Revolution</title>
+<meta name="description" content="عرض تقديمي تفاعلي عن الذكاء الاصطناعي التوليدي: المفاهيم، النماذج اللغوية، البرمجة، الوسائط، سوق العمل، والأخلاقيات.">
+<meta name="theme-color" content="#05070f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ثورة الذكاء الاصطناعي التوليدي — Generative AI Revolution">
+<meta property="og:description" content="من تحليل البيانات إلى إبداع المحتوى: 8 شرائح عن الذكاء الاصطناعي التوليدي وتأثيره على العمل والتعليم.">
+<meta property="og:locale" content="ar_AR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233ce3c2'/%3E%3Cstop offset='.55' stop-color='%238f80ff'/%3E%3Cstop offset='1' stop-color='%23ff7fb2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%23070a14'/%3E%3Cpath d='M32 14l4 12 12 4-12 4-4 12-4-12-12-4 12-4z' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05070f;
+    --ink:#eef2ff;
+    --muted:#94a3c4;
+    --line:rgba(255,255,255,.09);
+    --glass:rgba(255,255,255,.045);
+    --teal:#3ce3c2;
+    --violet:#8f80ff;
+    --amber:#ffc46b;
+    --pink:#ff7fb2;
+    --grad:linear-gradient(115deg,#3ce3c2,#8f80ff 52%,#ff7fb2);
+    --r:18px;
+    --font-ar:'IBM Plex Sans Arabic','Segoe UI',Tahoma,sans-serif;
+    --font-en:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--font-ar);overflow:hidden;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  ::selection{background:rgba(143,128,255,.35)}
+  .ico{width:1.15em;height:1.15em;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .sprite{position:absolute;width:0;height:0;overflow:hidden}
+
+  /* ---------- background ---------- */
+  .aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.42;mix-blend-mode:screen;will-change:transform}
+  .b1{width:52cqw;height:52cqw;background:#1b4bff;top:-16%;right:-12%;animation:drift1 28s ease-in-out infinite}
+  .b2{width:44cqw;height:44cqw;background:#7a2bff;bottom:-20%;left:-8%;animation:drift2 32s ease-in-out infinite}
+  .b3{width:30cqw;height:30cqw;background:#0fbfa4;top:38%;left:38%;opacity:.22;animation:drift3 24s ease-in-out infinite}
+  @keyframes drift1{50%{transform:translate3d(-7%,9%,0) scale(1.14)}}
+  @keyframes drift2{50%{transform:translate3d(8%,-7%,0) scale(1.1)}}
+  @keyframes drift3{50%{transform:translate3d(-6%,-8%,0) scale(1.2)}}
+  .grid-lines{
+    position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.55;
+    background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(ellipse at 50% 38%,#000 25%,transparent 78%);
+            mask-image:radial-gradient(ellipse at 50% 38%,#000 25%,transparent 78%);
+  }
+  #net{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5}
+
+  /* ---------- chrome ---------- */
+  .topbar{
+    position:fixed;inset:0 0 auto 0;height:66px;z-index:30;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:0 clamp(16px,4cqw,46px);
+  }
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--font-en);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#93a3c6}
+  .brand .mark{
+    width:27px;height:27px;border-radius:9px;background:var(--grad);color:#04060d;
+    display:grid;place-items:center;box-shadow:0 0 24px rgba(143,128,255,.5)
+  }
+  .brand .mark .ico{width:15px;height:15px;stroke-width:2}
+  .brand b{color:#d6ddf2;font-weight:500}
+  .counter{display:flex;align-items:baseline;gap:3px;direction:ltr;font-family:var(--font-en);color:#8494b8;font-size:11.5px;letter-spacing:.16em}
+  .counter #cur{color:#fff;font-size:18px;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+  .hud{
+    position:fixed;inset:auto 0 0 0;height:82px;z-index:30;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 clamp(16px,4cqw,46px);gap:16px;
+  }
+  .nav-btns{display:flex;gap:9px;align-items:center}
+  .nbtn{
+    width:41px;height:41px;border-radius:50%;border:1px solid var(--line);
+    background:rgba(255,255,255,.05);color:var(--ink);display:grid;place-items:center;
+    cursor:pointer;transition:transform .25s,background .25s,border-color .25s,opacity .25s;
+  }
+  .nbtn .ico{width:17px;height:17px}
+  .nbtn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);transform:translateY(-2px)}
+  .nbtn:active{transform:translateY(0) scale(.96)}
+  .nbtn[disabled]{opacity:.3;cursor:default;transform:none}
+  .nbtn:focus-visible,.dot:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+  .hint{font-size:11px;color:#6e7c9d;letter-spacing:.02em;display:none}
+  @media (min-width:900px){.hint{display:block}}
+  .hint kbd{
+    font-family:var(--font-en);font-size:10.5px;border:1px solid var(--line);
+    border-bottom-width:2px;border-radius:6px;padding:2px 6px;color:#a9b6d4;background:rgba(255,255,255,.04)
+  }
+  .dots{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:7px}
+  .dot{
+    width:7px;height:7px;padding:0;border:0;border-radius:99px;cursor:pointer;
+    background:rgba(255,255,255,.22);transition:width .35s ease,background .35s ease;
+  }
+  .dot:hover{background:rgba(255,255,255,.5)}
+  .dot[aria-current="true"]{width:26px;background:var(--grad)}
+  .progress{position:fixed;inset:auto 0 0 0;height:3px;background:rgba(255,255,255,.07);z-index:40;display:flex;justify-content:flex-start}
+  #bar{display:block;height:100%;width:0;background:var(--grad);transition:width .55s cubic-bezier(.22,.7,0,1)}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  /* ---------- slides ---------- */
+  .deck{position:fixed;inset:66px 0 82px 0;z-index:10}
+  .stage{
+    position:absolute;top:50%;left:50%;
+    width:1280px;height:720px;
+    container-type:size;
+    transform:translate(-50%,-50%) scale(var(--s,1));
+    transform-origin:center center;
+  }
+  .slide{
+    position:absolute;inset:0;display:grid;place-items:center;
+    padding:clamp(6px,1.6cqh,20px) clamp(16px,4.6cqw,64px);
+    opacity:0;visibility:hidden;transform:translate3d(0,24px,0) scale(.988);
+    transition:opacity .5s ease,transform .75s cubic-bezier(.22,.7,0,1),visibility .5s;
+    overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;
+  }
+  .slide.is-active{opacity:1;visibility:visible;transform:none}
+  .slide__inner{width:100%;max-width:1160px;margin:auto}
+  .anim{opacity:0;transform:translateY(16px)}
+  .slide.is-active .anim{animation:rise .78s cubic-bezier(.22,.7,0,1) forwards;animation-delay:var(--d,0s)}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  /* ---------- shared type ---------- */
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--font-en);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--teal);padding:6px 12px;border:1px solid rgba(60,227,194,.26);
+    border-radius:999px;background:rgba(60,227,194,.07);
+  }
+  .eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.35;transform:scale(.8)}}
+  .title{font-weight:600;font-size:clamp(26px,3.7cqw,48px);line-height:1.24;margin:12px 0 4px}
+  .title .hl{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .title-en{
+    font-family:var(--font-en);direction:ltr;text-align:right;
+    font-size:clamp(11px,1.05cqw,15px);letter-spacing:.04em;color:#8392b6;margin:2px 0 0;
+  }
+  .slide-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:clamp(12px,2.2cqh,26px)}
+  .lede{color:#b6c2de;font-size:clamp(13px,1.3cqw,18px);line-height:1.85;margin:10px 0 0;max-width:78ch}
+  .lede b{color:#fff;font-weight:600}
+
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;
+    border:1px solid var(--line);background:rgba(255,255,255,.045);
+    font-size:clamp(11px,1.1cqw,14px);color:#c3cde6;white-space:nowrap;
+  }
+  .chip .ico{width:15px;height:15px;color:var(--teal)}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+
+  /* ---------- cards ---------- */
+  .card{
+    position:relative;overflow:hidden;border-radius:var(--r);
+    border:1px solid var(--line);
+    background:linear-gradient(163deg,rgba(255,255,255,.07),rgba(255,255,255,.018) 60%,rgba(255,255,255,.03));
+    padding:clamp(13px,1.7cqw,24px);
+    transition:transform .4s cubic-bezier(.22,.7,0,1),border-color .4s,box-shadow .4s;
+  }
+  .card::after{
+    content:"";position:absolute;inset:0 0 auto 0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);opacity:.7
+  }
+  .card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.18);box-shadow:0 18px 40px -24px #000}
+  .card .glow{position:absolute;width:180px;height:180px;border-radius:50%;background:var(--a,#8f80ff);filter:blur(70px);opacity:.17;top:-72px;left:-56px;pointer-events:none}
+  .a-teal{--a:var(--teal)} .a-violet{--a:var(--violet)} .a-amber{--a:var(--amber)} .a-pink{--a:var(--pink)}
+  .ico-wrap{
+    width:clamp(32px,3cqw,46px);height:clamp(32px,3cqw,46px);border-radius:12px;
+    display:grid;place-items:center;color:var(--a,var(--teal));
+    background:color-mix(in srgb,var(--a,#3ce3c2) 15%,transparent);
+    border:1px solid color-mix(in srgb,var(--a,#3ce3c2) 30%,transparent);
+  }
+  .ico-wrap .ico{width:20px;height:20px}
+  .card-title{font-size:clamp(14px,1.45cqw,20px);font-weight:600;margin:10px 0 2px;line-height:1.35}
+  .card-en{font-family:var(--font-en);direction:ltr;text-align:right;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#7d8cb0}
+  .card-body{font-size:clamp(12px,1.15cqw,15.5px);line-height:1.8;color:#b3bfdb;margin:7px 0 0}
+  .card-foot{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+  .tag{
+    font-size:10px;letter-spacing:.02em;color:#93a2c4;border:1px solid var(--line);
+    background:rgba(255,255,255,.05);padding:3px 8px;border-radius:999px
+  }
+
+  /* ---------- cover ---------- */
+  .hero{text-align:center;position:relative}
+  .hero::before{
+    content:"";position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
+    width:min(720px,88cqw);height:min(720px,88cqw);border-radius:50%;
+    background:radial-gradient(circle,rgba(143,128,255,.16),transparent 62%);
+    pointer-events:none;z-index:-1;
+  }
+  .hero-title{
+    font-size:clamp(29px,5.9cqw,80px);line-height:1.16;font-weight:700;
+    margin:18px auto 0;max-width:15ch;letter-spacing:-.01em;
+  }
+  .hero-title .hl{
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 8px 34px rgba(143,128,255,.35));
+  }
+  .hero-sub{font-size:clamp(14px,1.9cqw,25px);color:#c2cce6;margin:16px auto 0;max-width:46ch;line-height:1.8;font-weight:300}
+  .hero-en{
+    font-family:var(--font-en);direction:ltr;text-align:center;color:#7f8fb4;
+    font-size:clamp(10.5px,1.05cqw,14px);letter-spacing:.24em;text-transform:uppercase;margin:14px 0 0;
+  }
+  .hero .chips{justify-content:center;margin-top:clamp(16px,2.6cqh,30px)}
+  .hero-meta{
+    display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;
+    margin-top:clamp(18px,3.6cqh,44px);padding-top:clamp(12px,2.4cqh,26px);
+    border-top:1px solid var(--line);max-width:560px;margin-inline:auto;
+  }
+  .hero-meta>div{display:flex;flex-direction:column;gap:2px;align-items:center}
+  .meta-k{font-size:10px;letter-spacing:.16em;color:#6f7e9f;text-transform:uppercase}
+  .meta-v{font-size:clamp(11.5px,1cqw,13px);color:#d3dbee}
+  .meta-sep{width:1px;height:26px;background:var(--line)}
+
+  /* ---------- definition + compare ---------- */
+  .def{
+    display:flex;gap:14px;align-items:flex-start;
+    padding:clamp(13px,1.5cqw,20px) clamp(14px,1.8cqw,24px);
+    border-radius:16px;border:1px solid rgba(143,128,255,.3);
+    background:linear-gradient(100deg,rgba(143,128,255,.16),rgba(60,227,194,.06));
+    margin-bottom:clamp(12px,2cqh,20px);
+  }
+  .def .ico{width:22px;height:22px;color:#b9aeff;margin-top:3px}
+  .def p{margin:0;font-size:clamp(13px,1.3cqw,17px);line-height:1.85;color:#dfe5f7}
+  .def b{color:#fff}
+  .compare{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(8px,1.1cqw,16px);align-items:stretch}
+  .vs{
+    align-self:center;font-family:var(--font-en);font-size:10.5px;letter-spacing:.16em;color:#7d8cb0;
+    border:1px solid var(--line);background:rgba(5,7,15,.7);border-radius:999px;padding:7px 9px;
+  }
+  .compare-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .compare-head .ct{font-size:clamp(13px,1.35cqw,18px);font-weight:600}
+  .compare-head .en-mini{font-family:var(--font-en);direction:ltr;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#7d8cb0}
+  .mini-list{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:5px}
+  .mini-list li{display:flex;gap:8px;align-items:flex-start;font-size:clamp(12px,1.12cqw,14.5px);color:#b7c2dd;line-height:1.6}
+  .mini-list li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--a,var(--teal));margin-top:.62em;flex:none;opacity:.9}
+  .out{
+    margin-top:10px;padding-top:9px;border-top:1px solid var(--line);
+    display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:11.5px;color:#c8d2e8
+  }
+  .out-k{font-size:9.5px;letter-spacing:.1em;color:#71809f;text-transform:uppercase;font-family:var(--font-en)}
+  .out-strip{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;
+    margin-top:clamp(10px,1.8cqh,18px);font-size:11.5px;color:#8494b4
+  }
+
+  /* ---------- llm ---------- */
+  .llm-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(10px,1.4cqw,20px);align-items:start}
+  .model{display:flex;align-items:flex-start;gap:11px;padding:clamp(10px,1.1cqw,15px) clamp(12px,1.3cqw,17px)}
+  .model .badge-name{
+    font-family:var(--font-en);font-weight:600;font-size:13px;letter-spacing:.02em;
+    min-width:64px;color:#fff
+  }
+  .model p{margin:0;font-size:clamp(12px,1.1cqw,14px);line-height:1.75;color:#b3bfdb}
+  .model .m-sub{font-family:var(--font-en);direction:ltr;text-align:right;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#7d8cb0;margin-bottom:2px}
+  .models{display:grid;gap:9px}
+  .panel{
+    border-radius:var(--r);border:1px solid var(--line);padding:clamp(12px,1.55cqw,20px);
+    background:linear-gradient(170deg,rgba(255,255,255,.055),rgba(255,255,255,.015));
+  }
+  .panel-h{display:flex;align-items:center;gap:8px;font-size:12px;color:#a9b6d4;letter-spacing:.03em;margin-bottom:10px}
+  .panel-h .ico{width:16px;height:16px;color:var(--teal)}
+  .steps{list-style:none;margin:0;padding:0;display:grid;gap:2px;counter-reset:step}
+  .steps li{
+    display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;position:relative;
+    padding:7px 0
+  }
+  .steps li::before{
+    counter-increment:step;content:counter(step,decimal-leading-zero);
+    font-family:var(--font-en);font-size:10px;color:var(--teal);
+    width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+    background:rgba(60,227,194,.1);border:1px solid rgba(60,227,194,.25);
+  }
+  .steps li:not(:last-child)::after{
+    content:"";position:absolute;inset-inline-start:11.5px;top:33px;bottom:-2px;width:1px;
+    background:linear-gradient(rgba(60,227,194,.3),transparent)
+  }
+  .steps b{display:block;font-size:clamp(12px,1.15cqw,15px);font-weight:600;color:#e6ebfa}
+  .steps span{display:block;font-size:clamp(11px,1.02cqw,13.5px);color:#9aa8c8;line-height:1.6;margin-top:1px}
+  .note{
+    display:flex;gap:9px;align-items:flex-start;margin-top:9px;
+    font-size:clamp(11px,1cqw,13px);line-height:1.7;color:#9fabca;
+  }
+  .note .ico{width:15px;height:15px;color:var(--amber);margin-top:2px}
+  .footnote{font-size:9.5px;color:#66738f;margin-top:9px}
+
+  /* ---------- dev ---------- */
+  .dev-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(10px,1.5cqw,22px);align-items:stretch}
+  .code{
+    border-radius:14px;border:1px solid var(--line);overflow:hidden;
+    background:rgba(2,4,11,.82);box-shadow:0 22px 50px -34px #000;
+    direction:ltr;display:flex;flex-direction:column
+  }
+  .code-bar{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.03)}
+  .code-bar .lights{display:flex;gap:5px}
+  .code-bar .lights i{width:8px;height:8px;border-radius:50%;background:#ff5f57}
+  .code-bar .lights i:nth-child(2){background:#febc2e}
+  .code-bar .lights i:nth-child(3){background:#28c840}
+  .code-bar .file{margin-inline-start:auto;font-family:var(--font-en);font-size:10px;letter-spacing:.1em;color:#7d8cb0}
+  pre{margin:0;padding:clamp(10px,1.3cqw,16px);overflow:auto;font-family:'SFMono-Regular',Consolas,'Liberation Mono',monospace;font-size:clamp(10px,.94cqw,12.5px);line-height:1.75;color:#c7d2ea}
+  pre .c{color:#5f6f92;font-style:italic}
+  pre .t{color:#7fd1ff}
+  pre .a{color:#ffc46b}
+  pre .s{color:#9be8a8}
+  pre .p{color:#c0a6ff}
+  pre .f{color:#ff9ec4}
+  .code-cap{font-size:10.5px;color:#7f8dab;margin-top:8px;line-height:1.6}
+  .flow{display:grid;gap:8px}
+  .flow-step{
+    display:flex;gap:11px;align-items:flex-start;padding:9px 11px;border-radius:12px;
+    border:1px solid var(--line);background:rgba(255,255,255,.03)
+  }
+  .flow-step .n{
+    font-family:var(--font-en);font-size:10px;color:#071019;font-weight:700;
+    width:22px;height:22px;border-radius:6px;background:var(--grad);display:grid;place-items:center;flex:none;margin-top:1px
+  }
+  .flow-step b{font-size:clamp(12px,1.1cqw,14.5px);display:block;color:#e8edfb}
+  .flow-step span{font-size:clamp(11px,1cqw,13px);color:#9dabca;line-height:1.55;display:block;margin-top:1px}
+  .benefits{display:flex;flex-wrap:wrap;gap:7px;margin-top:clamp(10px,1.7cqh,16px);align-items:center}
+  .benefits .lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6f7e9f;font-family:var(--font-en);margin-inline-end:2px}
+  .benefits .chip{padding:5px 10px;font-size:11px}
+  .warn{
+    display:flex;gap:9px;align-items:flex-start;margin-top:10px;padding:9px 12px;border-radius:12px;
+    border:1px solid rgba(255,196,107,.26);background:rgba(255,196,107,.07);
+    font-size:clamp(11px,1cqw,13px);line-height:1.65;color:#d9c9a8
+  }
+  .warn .ico{width:15px;height:15px;color:var(--amber);margin-top:2px}
+
+  /* ---------- media ---------- */
+  .media-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,1.1cqw,14px)}
+  .media-grid .card{padding:clamp(12px,1.3cqw,18px)}
+  .media-grid .card-body{font-size:clamp(11px,1.02cqw,13.5px);line-height:1.7}
+  .media-grid .card-title{font-size:clamp(12.5px,1.2cqw,16px)}
+  .media-grid .card-en{font-size:9px}
+  .media-grid .card-foot{margin-top:8px}
+  .media-grid .tag{font-size:9px;padding:2px 7px}
+  .pipeline-strip{
+    display:flex;align-items:center;justify-content:center;gap:clamp(6px,.9cqw,12px);flex-wrap:wrap;
+    margin-top:clamp(12px,2.2cqh,22px);padding:clamp(9px,1.2cqw,14px);
+    border-radius:14px;border:1px dashed rgba(255,255,255,.16);background:rgba(255,255,255,.025)
+  }
+  .pipeline-strip .ps{font-size:clamp(11px,1.05cqw,13.5px);color:#c2cce4;display:flex;align-items:center;gap:6px}
+  .pipeline-strip .ps .ico{width:14px;height:14px;color:var(--teal)}
+  .pipeline-strip .arr{color:#5d6b8c;font-family:var(--font-en)}
+
+  /* ---------- jobs ---------- */
+  .jobs-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(10px,1.5cqw,20px);align-items:start}
+  .role{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .role:last-child{border-bottom:0;padding-bottom:0}
+  .role:first-child{padding-top:0}
+  .role .ico{width:17px;height:17px;color:var(--teal);margin-top:3px}
+  .role b{display:block;font-size:clamp(12px,1.12cqw,14.5px);color:#e9eefb}
+  .role span{display:block;font-size:clamp(11px,1cqw,13px);color:#9dabca;line-height:1.6;margin-top:1px}
+  .skills{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .skill{
+    display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:10px;
+    border:1px solid var(--line);background:rgba(255,255,255,.035);
+    font-size:clamp(11px,1cqw,13px);color:#c6d0e7
+  }
+  .skill .ico{width:13px;height:13px;color:var(--teal)}
+  .insight{
+    display:flex;gap:11px;align-items:flex-start;margin-top:clamp(10px,1.8cqh,18px);
+    padding:clamp(10px,1.2cqw,15px) clamp(12px,1.4cqw,18px);border-radius:14px;
+    background:linear-gradient(100deg,rgba(60,227,194,.1),rgba(143,128,255,.1));
+    border:1px solid rgba(60,227,194,.2);font-size:clamp(11.5px,1.1cqw,14.5px);line-height:1.7;color:#d4e9e3
+  }
+  .insight b{color:#fff}
+  .insight .ico{width:18px;height:18px;color:var(--teal);margin-top:2px;flex:none}
+
+  /* ---------- ethics ---------- */
+  .ethics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,1cqw,13px)}
+  .ethics-grid .card{padding:clamp(12px,1.3cqw,17px)}
+  .ethics-grid .card-title{font-size:clamp(12.5px,1.15cqw,15px);margin-top:9px}
+  .ethics-grid .card-body{font-size:clamp(11px,1cqw,13px);line-height:1.7;margin-top:5px}
+  .ethics-grid .why{display:flex;gap:6px;align-items:flex-start;margin-top:7px;padding-top:7px;border-top:1px solid var(--line);font-size:clamp(10.5px,.95cqw,12.5px);color:#93a1c0;line-height:1.55}
+  .ethics-grid .why .ico{width:12px;height:12px;color:var(--a);margin-top:2px}
+  .principles{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:clamp(10px,1.8cqh,16px)}
+  .principles .lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#6f7e9f;font-family:var(--font-en)}
+  .principle{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;border:1px solid rgba(60,227,194,.22);background:rgba(60,227,194,.06);font-size:clamp(11px,1cqw,13px);color:#c9e7e0}
+  .principle .ico{width:12px;height:12px;color:var(--teal)}
+
+  /* ---------- conclusion ---------- */
+  .take-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.1cqw,14px)}
+  .take{padding:clamp(12px,1.4cqw,18px)}
+  .take .num{font-family:var(--font-en);font-size:11px;letter-spacing:.14em;color:var(--a,var(--teal));margin-bottom:6px;display:block}
+  .take p{margin:0;font-size:clamp(12px,1.12cqw,14.5px);line-height:1.8;color:#cbd5ea}
+  .take p b{color:#fff;font-weight:600}
+  .closing{
+    display:grid;grid-template-columns:1.35fr .85fr;gap:clamp(14px,2cqw,26px);align-items:center;
+    margin-top:clamp(12px,2.2cqh,22px);padding:clamp(14px,1.8cqw,22px);
+    border-radius:16px;border:1px solid var(--line);
+    background:linear-gradient(105deg,rgba(143,128,255,.14),rgba(60,227,194,.08) 70%,rgba(255,255,255,.02));
+  }
+  .closing p{margin:0;font-size:clamp(12.5px,1.28cqw,16.5px);line-height:1.85;color:#dbe3f5}
+  .closing p b{color:#fff}
+  .closing .future{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .closing .future .tag{font-size:9.5px;padding:3px 8px;color:#b9c6e2}
+  .thanks{text-align:center;border-inline-start:1px solid var(--line);padding-inline-start:clamp(10px,1.4cqw,20px)}
+  .thanks .big{font-size:clamp(20px,2.5cqw,34px);font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.3}
+  .thanks .en{font-family:var(--font-en);direction:ltr;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:#7f8fb3;margin-top:5px}
+  .thanks .small{font-size:10px;color:#6f7e9f;margin-top:6px}
+
+  /* ---------- small screens: stacked, readable, scrollable ---------- */
+  @media (max-width:860px){
+    .deck{inset:58px 0 76px 0}
+    .stage{inset:0;top:0;left:0;width:100%;height:100%;transform:none!important;container-type:size}
+    .topbar{height:58px;padding:0 16px}
+    .hud{height:76px;padding:0 16px}
+    .hint{display:none}
+    .dots{display:none}
+    .slide{padding:8px 16px 20px}
+    .slide__inner{max-width:none}
+    .llm-grid,.dev-grid,.jobs-grid,.compare,.closing{grid-template-columns:1fr}
+    .vs{display:none}
+    .media-grid,.ethics-grid{grid-template-columns:1fr 1fr}
+    .take-grid{grid-template-columns:1fr}
+    .closing .thanks{border-inline-start:0;border-top:1px solid var(--line);padding-inline-start:0;padding-top:12px}
+    .hero-meta{margin-top:18px}
+  }
+  @media (max-width:620px){
+    .media-grid,.ethics-grid{grid-template-columns:1fr}
+    .skills{grid-template-columns:1fr}
+    .hero-meta{gap:14px}
+    .brand span{display:none}
+    .card-en{display:none}
+    .slide-head{margin-bottom:12px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+    .anim{opacity:1;transform:none}
+  }
+
+  /* ---------- print / PDF ---------- */
+  @page{size:13.333in 7.5in;margin:0}
+  @media print{
+    html,body{height:auto;overflow:visible;background:#05070f}
+    .aurora,.grid-lines,#net,.topbar,.hud,.progress{display:none!important}
+    .deck{position:static;inset:auto;display:block}
+    .stage{position:relative;inset:auto;top:0;left:0;width:1280px;height:720px;transform:none!important;overflow:visible}
+    .slide{
+      position:relative;inset:auto;width:1280px;height:720px;opacity:1;visibility:visible;transform:none;
+      page-break-after:always;break-after:page;padding:20px 40px;overflow:hidden;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    }
+    .slide:last-child{page-break-after:auto}
+    .anim{opacity:1!important;transform:none!important;animation:none!important}
+    .card{box-shadow:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3.2l1.9 4.9 4.9 1.9-4.9 1.9L12 16.8l-1.9-4.9L5.2 10l4.9-1.9z"/><path d="M18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/></symbol>
+    <symbol id="i-text" viewBox="0 0 24 24"><path d="M5 5h14M5 9.5h14M5 14h9M5 18.5h6"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="M4.5 17l4.8-4.4 3.2 3 2.6-2.3 4.4 4"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M9 7.5L4.5 12 9 16.5M15 7.5L19.5 12 15 16.5"/></symbol>
+    <symbol id="i-audio" viewBox="0 0 24 24"><path d="M3.5 10v4M7.5 7.5v9M11.5 4.5v15M15.5 8v8M19.5 10.5v3"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="12.5" height="12" rx="2.5"/><path d="M15.5 10.5l5-3v9l-5-3"/></symbol>
+    <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 5.5a3 3 0 00-5.6-1.4A2.9 2.9 0 004 7a3 3 0 00-.6 5A3 3 0 005 17a3 3 0 004.4 2.6A3 3 0 0012 18.5"/><path d="M12 5.5a3 3 0 015.6-1.4A2.9 2.9 0 0120 7a3 3 0 01.6 5A3 3 0 0119 17a3 3 0 01-4.4 2.6A3 3 0 0112 18.5"/><path d="M12 5.5v13"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="2"/><path d="M10 3.5v3M14 3.5v3M10 17.5v3M14 17.5v3M3.5 10h3M3.5 14h3M17.5 10h3M17.5 14h3"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 2.6v5.1c0 4.4-3 7.7-7 9.3-4-1.6-7-4.9-7-9.3V5.6z"/><path d="M9 11.8l2 2 4-4"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2.2"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/><path d="M12 14.6v2"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3.5v17M6 7h12M6 7l-3 6h6zM18 7l-3 6h6zM8 20.5h8"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.2l8.4 15.1H3.6z"/><path d="M12 9.5v4.2M12 16.6v.4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 20c0-3.2 2.5-5.5 5.5-5.5s5.5 2.3 5.5 5.5"/><path d="M16 5.6a3.2 3.2 0 010 5.8M17.5 14.9c2 .6 3.4 2.4 3.4 4.6"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7.5" width="18" height="12" rx="2.4"/><path d="M9 7.5V6a2 2 0 012-2h2a2 2 0 012 2v1.5M3 13h18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.4 12.2l2.4 2.4 4.8-4.9"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+    <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3.5l8.5 4.6L12 12.7 3.5 8.1z"/><path d="M3.5 12.4l8.5 4.6 8.5-4.6M3.5 16.6l8.5 4.6 8.5-4.6"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M3.5 12h17M12 3.4c2.3 2.4 3.5 5.4 3.5 8.6s-1.2 6.2-3.5 8.6c-2.3-2.4-3.5-5.4-3.5-8.6S9.7 5.8 12 3.4z"/></symbol>
+    <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.5 6.2a4.6 4.6 0 105.3 5.3l-3.5-1.8-1.8-3.5z"/><path d="M13 11L4.2 19.8a1.8 1.8 0 002.6 2.6L15.6 13"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9.5 17.5h5M10 20.5h4"/><path d="M12 3.5a6 6 0 00-3.4 10.9c.5.4.9 1 .9 1.6v.5h5v-.5c0-.6.4-1.2.9-1.6A6 6 0 0012 3.5z"/></symbol>
+  </defs>
+</svg>
+
+<div class="aurora" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+</div>
+<div class="grid-lines" aria-hidden="true"></div>
+<canvas id="net" aria-hidden="true"></canvas>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="mark"><svg class="ico"><use href="#i-spark"/></svg></span>
+    <span>GenAI <b>·</b> 2026</span>
+  </div>
+  <div class="counter" aria-hidden="true"><span id="cur">01</span><span>/</span><span id="tot">08</span></div>
+</header>
+
+<main class="deck" id="deck">
+<div class="stage" id="stage">
+
+  <!-- 1 · COVER -->
+  <section class="slide is-active" data-label="الغلاف">
+    <div class="slide__inner hero">
+      <span class="eyebrow anim" style="--d:.05s"><i class="dot"></i>AI Presentation · 2026</span>
+      <h1 class="hero-title anim" style="--d:.14s">ثورة الذكاء الاصطناعي <span class="hl">التوليدي</span></h1>
+      <p class="hero-sub anim" style="--d:.24s">إعادة تشكيل المستقبل: من تحليل البيانات إلى إبداع المحتوى</p>
+      <p class="hero-en anim" style="--d:.32s">Generative AI Revolution — Reshaping the Future</p>
+      <div class="chips anim" style="--d:.4s">
+        <span class="chip"><svg class="ico"><use href="#i-text"/></svg> نصوص وأكواد</span>
+        <span class="chip"><svg class="ico"><use href="#i-image"/></svg> صور ووسائط</span>
+        <span class="chip"><svg class="ico"><use href="#i-shield"/></svg> استخدام مسؤول</span>
+      </div>
+      <div class="hero-meta anim" style="--d:.5s">
+        <div><span class="meta-k">إعداد وتقديم</span><span class="meta-v">فريق العرض</span></div>
+        <span class="meta-sep"></span>
+        <div><span class="meta-k">المحتوى</span><span class="meta-v">8 شرائح · 10 دقائق</span></div>
+        <span class="meta-sep"></span>
+        <div><span class="meta-k">التاريخ</span><span class="meta-v">2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · WHAT IS IT -->
+  <section class="slide" data-label="ما هو الذكاء الاصطناعي التوليدي">
+    <div class="slide__inner">
+      <div class="slide-head">
+        <div>
+          <span class="eyebrow anim"><i class="dot"></i>01 · Definition</span>
+          <h2 class="title anim" style="--d:.08s">ما هو الذكاء الاصطناعي <span class="hl">التوليدي</span>؟</h2>
+          <p class="title-en anim" style="--d:.12s">What is Generative AI?</p>
+        </div>
+      </div>
+
+      <div class="def anim" style="--d:.18s">
+        <svg class="ico"><use href="#i-bulb"/></svg>
+        <p><b>ببساطة:</b> أنظمة تعلّمت أنماط كميات هائلة من البيانات، ثم <b>تُنتج محتوى جديدًا</b> يشبه تلك الأنماط — نصًا كان أو صورة أو كودًا — بدلًا من مجرد تحليل ما هو موجود.</p>
+      </div>
+
+      <div class="compare">
+        <article class="card a-violet anim" style="--d:.24s">
+          <span class="glow"></span>
+          <div class="compare-head"><span class="ct">الذكاء التقليدي (التحليلي)</span><span class="en-mini">Traditional AI</span></div>
+          <p class="card-body">يقرأ البيانات الموجودة ويستخلص منها قرارًا أو توقعًا.</p>
+          <ul class="mini-list">
+            <li>تصفية البريد المزعج وتصنيف الرسائل</li>
+            <li>كشف الاحتيال والتنبؤ بالطلب</li>
+            <li>أنظمة التوصية وتحليل الصور الطبية</li>
+          </ul>
+          <div class="out"><span class="out-k">Output</span><span>تصنيف · رقم · احتمال</span></div>
+        </article>
+
+        <span class="vs anim" style="--d:.3s">VS</span>
+
+        <article class="card a-teal anim" style="--d:.34s">
+          <span class="glow"></span>
+          <div class="compare-head"><span class="ct">الذكاء التوليدي</span><span class="en-mini">Generative AI</span></div>
+          <p class="card-body">يُنشئ محتوى لم يكن موجودًا من قبل، بناءً على وصف أو مثال.</p>
+          <ul class="mini-list">
+            <li>مقال أو بريد أو ملخص من نقاط</li>
+            <li>صورة أو شعار أو واجهة تصميم</li>
+            <li>دالة برمجية أو موقع كامل</li>
+          </ul>
+          <div class="out"><span class="out-k">Output</span><span>نص · صورة · كود · صوت · فيديو</span></div>
+        </article>
+      </div>
+
+      <div class="out-strip anim" style="--d:.44s">
+        <span class="chip"><svg class="ico"><use href="#i-text"/></svg> نص</span>
+        <span class="chip"><svg class="ico"><use href="#i-image"/></svg> صورة</span>
+        <span class="chip"><svg class="ico"><use href="#i-code"/></svg> كود</span>
+        <span class="chip"><svg class="ico"><use href="#i-audio"/></svg> صوت</span>
+        <span class="chip"><svg class="ico"><use href="#i-video"/></svg> فيديو</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · LLMs -->
+  <section class="slide" data-label="النماذج اللغوية الكبيرة">
+    <div class="slide__inner">
+      <div class="slide-head">
+        <div>
+          <span class="eyebrow anim"><i class="dot"></i>02 · Language Models</span>
+          <h2 class="title anim" style="--d:.08s">النماذج اللغوية <span class="hl">الكبيرة</span></h2>
+          <p class="title-en anim" style="--d:.12s">Large Language Models (LLMs)</p>
+        </div>
+      </div>
+
+      <div class="llm-grid">
+        <div class="models">
+          <article class="card a-violet model anim" style="--d:.18s">
+            <span class="badge-name">GPT</span>
+            <div><div class="m-sub">OpenAI</div><p>نماذج عامة للمحادثة والكتابة والبرمجة، مع منظومة أدوات وواجهات واسعة.</p></div>
+          </article>
+          <article class="card a-teal model anim" style="--d:.24s">
+            <span class="badge-name">Gemini</span>
+            <div><div class="m-sub">Google</div><p>قدرات متعددة الوسائط وسياق طويل، وتكامل مع البحث وأدوات Workspace.</p></div>
+          </article>
+          <article class="card a-amber model anim" style="--d:.3s">
+            <span class="badge-name">Claude</span>
+            <div><div class="m-sub">Anthropic</div><p>تركيز على السلامة والاستدلال، وقدرة على معالجة نصوص وتحليلات مطوّلة.</p></div>
+          </article>
+          <p class="footnote anim" style="--d:.36s">أسماء النماذج مذكورة للتعريف فقط، وليست توصية أو رعاية.</p>
+        </div>
+
+        <div class="panel anim" style="--d:.2s">
+          <div class="panel-h"><svg class="ico"><use href="#i-cpu"/></svg> كيف يعمل النموذج؟ — How an LLM works</div>
+          <ol class="steps">
+            <li><div><b>التقطيع Tokenization</b><span>تقسيم النص إلى وحدات صغيرة (كلمات أو أجزاء كلمات).</span></div></li>
+            <li><div><b>التمثيل Embeddings</b><span>تحويل الوحدات إلى متجهات رقمية تحمل المعنى.</span></div></li>
+            <li><div><b>الانتباه Attention</b><span>ربط كل كلمة بما حولها لفهم السياق.</span></div></li>
+            <li><div><b>التوقع Prediction</b><span>اختيار الكلمة التالية باحتمالية عالية، خطوة بخطوة.</span></div></li>
+          </ol>
+          <div class="note">
+            <svg class="ico"><use href="#i-alert"/></svg>
+            <span>النموذج لا «يفهم» كما نفهم؛ بل يتوقع بدقة عالية. لذلك يحتاج دائمًا إلى مراجعة بشرية.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · SOFTWARE -->
+  <section class="slide" data-label="البرمجة وتطوير البرمجيات">
+    <div class="slide__inner">
+      <div class="slide-head">
+        <div>
+          <span class="eyebrow anim"><i class="dot"></i>03 · Software Development</span>
+          <h2 class="title anim" style="--d:.08s">البرمجة وتطوير <span class="hl">البرمجيات</span></h2>
+          <p class="title-en anim" style="--d:.12s">AI in Software Development</p>
+        </div>
+      </div>
+
+      <div class="dev-grid">
+        <div>
+          <div class="code anim" style="--d:.18s">
+            <div class="code-bar"><span class="lights"><i></i><i></i><i></i></span><span class="file">index.html</span></div>
+<pre><code><span class="c">/* prompt → code */</span>
+<span class="t">&lt;section</span> <span class="a">class</span>=<span class="s">"hero"</span><span class="t">&gt;</span>
+  <span class="t">&lt;h1&gt;</span>Hello, World!<span class="t">&lt;/h1&gt;</span>
+<span class="t">&lt;/section&gt;</span>
+
+<span class="t">&lt;style&gt;</span>
+  .hero {
+    <span class="p">display</span>: grid;
+    <span class="p">place-items</span>: center;
+    <span class="p">background</span>: <span class="f">linear-gradient</span>(
+      120deg, #3ce3c2, #8f80ff);
+  }
+<span class="t">&lt;/style&gt;</span></code></pre>
+          </div>
+          <p class="code-cap anim" style="--d:.26s">من وصف بالعربية إلى كود HTML/CSS/JS قابل للتشغيل والنشر.</p>
+        </div>
+
+        <div>
+          <div class="flow">
+            <div class="flow-step anim" style="--d:.24s"><span class="n">1</span><div><b>الوصف</b><span>حدّد الهدف والجمهور والقيود التقنية.</span></div></div>
+            <div class="flow-step anim" style="--d:.29s"><span class="n">2</span><div><b>التوليد</b><span>اطلب مكوّنًا أو صفحة كاملة أو إصلاح خطأ.</span></div></div>
+            <div class="flow-step anim" style="--d:.34s"><span class="n">3</span><div><b>المراجعة والاختبار</b><span>شغّل الكود، اختبره، وحسّن الأداء والوصول.</span></div></div>
+            <div class="flow-step anim" style="--d:.39s"><span class="n">4</span><div><b>النشر</b><span>ارفع الموقع على GitHub Pages أو Netlify.</span></div></div>
+          </div>
+          <div class="benefits anim" style="--d:.44s">
+            <span class="lbl">المكسب</span>
+            <span class="chip">نماذج أولية أسرع</span>
+            <span class="chip">توثيق واختبارات</span>
+            <span class="chip">تعلّم أثناء العمل</span>
+          </div>
+          <div class="warn anim" style="--d:.5s">
+            <svg class="ico"><use href="#i-shield"/></svg>
+            <span>المسؤولية تبقى على المطوّر: اقرأ الكود، افهمه، ولا تنشر ما لا تستطيع تفسيره.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · MULTIMODAL -->
+  <section class="slide" data-label="إنشاء المحتوى والوسائط">
+    <div class="slide__inner">
+      <div class="slide-head">
+        <div>
+          <span class="eyebrow anim"><i class="dot"></i>04 · Multi-modal AI</span>
+          <h2 class="title anim" style="--d:.08s">إنشاء المحتوى <span class="hl">والوسائط</span></h2>
+          <p class="title-en anim" style="--d:.12s">Multi-modal AI &amp; Media Generation</p>
+        </div>
+      </div>
+
+      <div class="media-grid">
+        <article class="card a-teal anim" style="--d:.18s">
+          <span class="glow"></span>
+          <div class="ico-wrap"><svg class="ico"><use href="#i-image"/></svg></div>
+          <h3 class="card-title">الصور البصرية</h3>
+          <p class="card-en">Image Generation</p>
+          <p class="card-body">توليد صور من وصف نصي، وتحريرها وإزالة الخلفيات وتغيير الأسلوب.</p>
+          <div class="card-foot"><span class="tag">تصميم</span><span class="tag">إعلانات</span><span class="tag">عرض منتجات</span></div>
+        </article>
+
+        <article class="card a-violet anim" style="--d:.24s">
+          <span class="glow"></span>
+          <div class="ico-wrap"><svg class="ico"><use href="#i-audio"/></svg></div>
+          <h3 class="card-title">الصوت</h3>
+          <p class="card-en">Audio &amp; Voice</p>
+          <p class="card-body">تعليق صوتي واقعي، موسيقى خلفية، تفريغ وتسجيل وترجمة تلقائية.</p>
+          <div class="card-foot"><span class="tag">بودكاست</span><span class="tag">دبلجة</span><span class="tag">تعليم</span></div>
+        </article>
+
+        <article class="card a-pink anim" style="--d:.3s">
+          <span class="glow"></span>
+          <div class="ico-wrap"><svg class="ico"><use href="#i-video"/></svg></div>
+          <h3 class="card-title">الفيديو</h3>
+          <p class="card-en">Video Generation</p>
+          <p class="card-body">مقاطع قصيرة من نص أو صورة، مع تحرير ومونتاج مدعوم بالذكاء الاصطناعي.</p>
+          <div class="card-foot"><span class="tag">محتوى اجتماعي</span><span class="tag">إعلانات</span></div>
+        </article>
+
+        <article class="card a-amber anim" style="--d:.36s">
+          <span class="glow"></span>
+          <div class="ico-wrap"><svg class="ico"><use href="#i-briefcase"/></svg></div>
+          <h3 class="card-title">التسويق والتصميم</h3>
+          <p class="card-en">Marketing &amp; Design</p>
+          <p class="card-body">بانرات وهويات ونسخ إعلانية وحملات كاملة في وقت قياسي.</p>
+          <div class="card-foot"><span class="tag">هوية بصرية</span><span class="tag">محتوى</span><span class="tag">حملات</span></div>
+        </article>
+      </div>
+
+      <div class="pipeline-strip anim" style="--d:.44s">
+        <span class="ps"><svg class="ico"><use href="#i-bulb"/></svg> فكرة</span><span class="arr">→</span>
+        <span class="ps"><svg class="ico"><use href="#i-text"/></svg> نص</span><span class="arr">→</span>
+        <span class="ps"><svg class="ico"><use href="#i-image"/></svg> صورة</span><span class="arr">→</span>
+        <span class="ps"><svg class="ico"><use href="#i-audio"/></svg> تعليق صوتي</span><span class="arr">→</span>
+        <span class="ps"><svg class="ico"><use href="#i-video"/></svg> فيديو</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · JOBS -->
+  <section class="slide" data-label="الأثر على سوق العمل">
+    <div class="slide__inner">
+      <div class="slide-head">
+        <div>
+          <span class="eyebrow anim"><i class="dot"></i>05 · The Job Market</span>
+          <h2 class="title anim" style="--d:.08s">الأثر على <span class="hl">سوق العمل</span></h2>
+          <p class="title-en anim" style="--d:.12s">Impact on the Job Market</p>
+        </div>
+      </div>
+
+      <div class="jobs-grid">
+        <div class="card a-teal anim" style="--d:.18s">
+          <span class="glow"></span>
+          <div class="panel-h" style="margin-bottom:4px"><svg class="ico"><use href="#i-users"/></svg> وظائف صاعدة</div>
+          <div class="role"><svg class="ico"><use href="#i-target"/></svg><div><b>مهندس الأوامر — Prompt Engineer</b><span>يصمم تعليمات دقيقة ومختبرة للحصول على أفضل مخرجات.</span></div></div>
+          <div class="role"><svg class="ico"><use href="#i-tool"/></svg><div><b>مهندس الأتمتة</b><span>يربط النماذج بالأنظمة والأدوات عبر الـ APIs وسير العمل.</span></div></div>
+          <div class="role"><svg class="ico"><use href="#i-search"/></svg><div><b>مدقق مخرجات الذكاء الاصطناعي</b><span>يتحقق من الدقة والجودة والامتثال قبل النشر.</span></div></div>
+          <div class="role"><svg class="ico"><use href="#i-scale"/></svg><div><b>أخصائي أخلاقيات وسياسات</b><span>يضع قواعد الاستخدام والخصوصية وإدارة المخاطر.</span></div></div>
+        </div>
+
+        <div>
+          <div class="panel a-violet anim" style="--d:.24s">
+            <div class="panel-h"><svg class="ico"><use href="#i-layers"/></svg> المهارات الأكثر قيمة</div>
+            <div class="skills">
+              <span class="skill"><svg class="ico"><use href="#i-check"/></svg> صياغة الأوامر واختبارها</span>
+              <span class="skill"><svg class="ico"><use href="#i-check"/></svg> التفكير النقدي والتحقق</span>
+              <span class="skill"><svg class="ico"><use href="#i-check"/></svg> فهم المجال Domain</span>
+              <span class="skill"><svg class="ico"><use href="#i-check"/></svg> البيانات والخصوصية</span>
+              <span class="skill"><svg class="ico"><use href="#i-check"/></svg> أتمتة المهام المتكررة</span>
+              <span class="skill"><svg class="ico"><use href="#i-check"/></svg> التعلّم المستمر</span>
+            </div>
+          </div>
+          <div class="insight anim" style="--d:.32s">
+            <svg class="ico"><use href="#i-spark"/></svg>
+            <span><b>الخلاصة:</b> الأتمتة تستهدف المهام لا الوظائف بأكملها. من يتقن استخدام الأدوات يصبح أسرع وأكثر إنتاجية، لا بديلًا عنها.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · ETHICS -->
+  <section class="slide" data-label="التحديات والأخلاقيات">
+    <div class="slide__inner">
+      <div class="slide-head">
+        <div>
+          <span class="eyebrow anim"><i class="dot"></i>06 · Challenges &amp; Ethics</span>
+          <h2 class="title anim" style="--d:.08s">التحديات <span class="hl">والأخلاقيات</span></h2>
+          <p class="title-en anim" style="--d:.12s">Challenges &amp; Responsible AI</p>
+        </div>
+      </div>
+
+      <div class="ethics-grid">
+        <article class="card a-amber anim" style="--d:.18s">
+          <span class="glow"></span>
+          <div class="ico-wrap"><svg class="ico"><use href="#i-alert"/></svg></div>
+          <h3 class="card-title">دقة البيانات</h3>
+          <p class="card-en">Accuracy</p>
+          <p class="card-body">مخرجات تبدو مقنعة وقد تكون خاطئة تمامًا (الهلوسة).</p>
+          <div class="why"><svg class="ico"><use href="#i-check"/></svg><span>تحقّق من المصادر ولا تعتمد على إجابة واحدة.</span></div>
+        </article>
+
+        <article class="card a-teal anim" style="--d:.24s">
+          <span class="glow"></span>
+          <div class="ico-wrap"><svg class="ico"><use href="#i-lock"/></svg></div>
+          <h3 class="card-title">الخصوصية</h3>
+          <p class="card-en">Privacy</p>
+          <p class="card-body">ما ترفعه من بيانات قد يُعالج على خوادم خارجية.</p>
+          <div class="why"><svg class="ico"><use href="#i-check"/></svg><span>لا تُدخل بيانات شخصية أو سرية في الأدوات العامة.</span></div>
+        </article>
+
+        <article class="card a-pink anim" style="--d:.3s">
+          <span class="glow"></span>
+          <div class="ico-wrap"><svg class="ico"><use href="#i-scale"/></svg></div>
+          <h3 class="card-title">الملكية الفكرية</h3>
+          <p class="card-en">Intellectual Property</p>
+          <p class="card-body">حقوق النصوص والصور والأكواد المولّدة ليست واضحة دائمًا.</p>
+          <div class="why"><svg class="ico"><use href="#i-check"/></svg><span>راجع الترخيص واذكر مصدر أي محتوى خارجي.</span></div>
+        </article>
+
+        <article class="card a-violet anim" style="--d:.36s">
+          <span class="glow"></span>
+          <div class="ico-wrap"><svg class="ico"><use href="#i-users"/></svg></div>
+          <h3 class="card-title">التحيز</h3>
+          <p class="card-en">Bias</p>
+          <p class="card-body">النماذج تعكس تحيزات بيانات التدريب وقد تكرّرها.</p>
+          <div class="why"><svg class="ico"><use href="#i-check"/></svg><span>اختبر على حالات متنوعة وأبقِ مراجعة بشرية.</span></div>
+        </article>
+      </div>
+
+      <div class="principles anim" style="--d:.44s">
+        <span class="lbl">Responsible use</span>
+        <span class="principle"><svg class="ico"><use href="#i-check"/></svg> تحقّق بشري</span>
+        <span class="principle"><svg class="ico"><use href="#i-check"/></svg> شفافية وإفصاح</span>
+        <span class="principle"><svg class="ico"><use href="#i-check"/></svg> تقليل البيانات</span>
+        <span class="principle"><svg class="ico"><use href="#i-check"/></svg> التزام بالسياسات</span>
+        <span class="principle"><svg class="ico"><use href="#i-check"/></svg> توثيق المصادر</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · CONCLUSION -->
+  <section class="slide" data-label="الخاتمة والتطلعات المستقبلية">
+    <div class="slide__inner">
+      <div class="slide-head">
+        <div>
+          <span class="eyebrow anim"><i class="dot"></i>07 · Conclusion</span>
+          <h2 class="title anim" style="--d:.08s">الخاتمة و<span class="hl">التطلعات المستقبلية</span></h2>
+          <p class="title-en anim" style="--d:.12s">Conclusion &amp; Future Outlook</p>
+        </div>
+      </div>
+
+      <div class="take-grid">
+        <article class="card a-teal take anim" style="--d:.18s">
+          <span class="num">01 · CREATE</span>
+          <p>الذكاء التوليدي <b>يُنشئ</b> ولا يحلّل فقط: نص، صورة، كود، صوت، وفيديو من وصف واحد.</p>
+        </article>
+        <article class="card a-violet take anim" style="--d:.24s">
+          <span class="num">02 · AUGMENT</span>
+          <p>هذه النماذج <b>تضاعف قدرتك</b>، لا تستبدلك؛ جودة النتيجة تعتمد على وصفك ومراجعتك.</p>
+        </article>
+        <article class="card a-amber take anim" style="--d:.3s">
+          <span class="num">03 · TRUST</span>
+          <p>الاستخدام المسؤول <b>شرط للقيمة المستدامة</b>: تحقّق، احمِ البيانات، ووثّق المصادر.</p>
+        </article>
+      </div>
+
+      <div class="closing anim" style="--d:.38s">
+        <div>
+          <p><b>رؤية مستقبلية:</b> مساعدون شخصيون في الدراسة والعمل، أتمتة أذكى للمهام المتكررة، وتكامل أعمق في التعليم والبرمجة والإعلام — مع تنظيم أوضح وحوكمة للبيانات. ابدأ بأداة واحدة، وقِس أثرها أسبوعيًا.</p>
+          <div class="future">
+            <span class="tag">تعليم مخصص</span>
+            <span class="tag">إنتاجية أعلى</span>
+            <span class="tag">تطوير أسرع</span>
+            <span class="tag">حوكمة وشفافية</span>
+          </div>
+        </div>
+        <div class="thanks">
+          <div class="big">شكرًا لكم</div>
+          <div class="en">Thank you</div>
+          <div class="small">أسئلة ونقاش · Q&amp;A</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<nav class="hud" aria-label="التنقل بين الشرائح">
+  <div class="hint">تنقّل بـ <kbd>←</kbd> <kbd>→</kbd> · عرض كامل <kbd>F</kbd> · طباعة <kbd>P</kbd></div>
+  <div class="dots" id="dots"></div>
+  <div class="nav-btns">
+    <button class="nbtn" id="prev" type="button" aria-label="الشريحة السابقة"><svg class="ico"><use href="#i-arrow-r"/></svg></button>
+    <button class="nbtn" id="next" type="button" aria-label="الشريحة التالية"><svg class="ico"><use href="#i-arrow"/></svg></button>
+  </div>
+</nav>
+<div class="progress" aria-hidden="true"><i id="bar"></i></div>
+
+<script>
+(function(){
+  'use strict';
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var idx = 0;
+  var dotsWrap = document.getElementById('dots');
+  var cur = document.getElementById('cur');
+  var tot = document.getElementById('tot');
+  var bar = document.getElementById('bar');
+  var prevBtn = document.getElementById('prev');
+  var nextBtn = document.getElementById('next');
+  var stage = document.getElementById('stage');
+  var deckEl = document.getElementById('deck');
+  var pad = function(n){ return (n < 10 ? '0' : '') + n; };
+
+  // scale the fixed 1280x720 canvas to fit the available area
+  function fit(){
+    if (window.matchMedia('(max-width: 860px)').matches){
+      stage.style.removeProperty('--s');
+      return;
+    }
+    var aw = deckEl.clientWidth - 28;
+    var ah = deckEl.clientHeight - 10;
+    var s = Math.min(aw / 1280, ah / 720, 1.25);
+    stage.style.setProperty('--s', String(Math.max(s, 0.15).toFixed(4)));
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  window.addEventListener('orientationchange', fit);
+
+  tot.textContent = pad(total);
+  slides.forEach(function(s, n){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'dot';
+    b.setAttribute('aria-label', 'الشريحة ' + (n + 1) + ': ' + (s.dataset.label || ''));
+    b.addEventListener('click', function(){ go(n); });
+    dotsWrap.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function paint(){
+    dots.forEach(function(d, k){ d.setAttribute('aria-current', k === idx ? 'true' : 'false'); });
+    cur.textContent = pad(idx + 1);
+    bar.style.width = ((idx + 1) / total * 100) + '%';
+    prevBtn.disabled = idx === 0;
+    nextBtn.disabled = idx === total - 1;
+    if (history.replaceState) history.replaceState(null, '', '#' + (idx + 1));
+  }
+
+  function go(n, force){
+    n = Math.max(0, Math.min(total - 1, n));
+    if (n === idx && !force) return;
+    slides.forEach(function(s, k){
+      var on = k === n;
+      s.classList.toggle('is-active', on);
+      if (on) s.removeAttribute('aria-hidden');
+      else s.setAttribute('aria-hidden', 'true');
+    });
+    idx = n;
+    var s = slides[idx];
+    s.scrollTop = 0;
+    paint();
+    // restart the reveal animation
+    s.querySelectorAll('.anim').forEach(function(el){
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = '';
+    });
+  }
+
+  function next(){ go(idx + 1); }
+  function prev(){ go(idx - 1); }
+
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+
+  document.addEventListener('keydown', function(e){
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    var k = e.key;
+    if (k === 'ArrowLeft' || k === 'ArrowDown' || k === ' ' || k === 'PageDown' || k === 'Enter'){ e.preventDefault(); next(); }
+    else if (k === 'ArrowRight' || k === 'ArrowUp' || k === 'PageUp' || k === 'Backspace'){ e.preventDefault(); prev(); }
+    else if (k === 'Home'){ e.preventDefault(); go(0); }
+    else if (k === 'End'){ e.preventDefault(); go(total - 1); }
+    else if (k === 'f' || k === 'F'){
+      if (!document.fullscreenElement && document.documentElement.requestFullscreen) document.documentElement.requestFullscreen();
+      else if (document.exitFullscreen) document.exitFullscreen();
+    }
+    else if (k === 'p' || k === 'P'){ window.print(); }
+  });
+
+  // touch / swipe
+  var sx = 0, sy = 0, tracking = false;
+  document.addEventListener('touchstart', function(e){
+    if (e.touches.length !== 1) return;
+    tracking = true; sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+  }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if (!tracking) return; tracking = false;
+    var t = e.changedTouches[0];
+    var dx = t.clientX - sx, dy = t.clientY - sy;
+    if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4){ (dx > 0 ? prev() : next()); }
+  }, {passive:true});
+
+  // deep link
+  var fromHash = parseInt((location.hash || '').replace('#',''), 10);
+  var start = (fromHash >= 1 && fromHash <= total) ? fromHash - 1 : 0;
+  idx = start;
+  go(start, true);
+
+  window.addEventListener('hashchange', function(){
+    var n = parseInt((location.hash || '').replace('#',''), 10);
+    if (n >= 1 && n <= total && n - 1 !== idx) go(n - 1);
+  });
+
+  // ---------- constellation background ----------
+  var cv = document.getElementById('net');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (cv && cv.getContext && !reduce){
+    var ctx = cv.getContext('2d');
+    var W = 0, H = 0, DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var pts = [];
+    function size(){
+      W = window.innerWidth; H = window.innerHeight;
+      cv.width = W * DPR; cv.height = H * DPR;
+      cv.style.width = W + 'px'; cv.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      var count = Math.min(64, Math.round(W * H / 24000));
+      pts = [];
+      for (var i = 0; i < count; i++){
+        pts.push({
+          x: Math.random() * W, y: Math.random() * H,
+          vx: (Math.random() - .5) * .18, vy: (Math.random() - .5) * .18,
+          r: Math.random() * 1.4 + .6
+        });
+      }
+    }
+    function draw(){
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < pts.length; i++){
+        var p = pts[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(160,190,255,.55)';
+        ctx.fill();
+      }
+      for (var a = 0; a < pts.length; a++){
+        for (var b = a + 1; b < pts.length; b++){
+          var dx = pts[a].x - pts[b].x, dy = pts[a].y - pts[b].y;
+          var d2 = dx * dx + dy * dy;
+          if (d2 < 16000){
+            var o = (1 - d2 / 16000) * .22;
+            ctx.beginPath();
+            ctx.moveTo(pts[a].x, pts[a].y);
+            ctx.lineTo(pts[b].x, pts[b].y);
+            ctx.strokeStyle = 'rgba(140,170,255,' + o.toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+      raf = requestAnimationFrame(draw);
+    }
+    var raf = null;
+    function start(){ if (raf === null){ size(); draw(); } }
+    function stop(){ if (raf !== null){ cancelAnimationFrame(raf); raf = null; } }
+    window.addEventListener('resize', size);
+    document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+    start();
+  }
+})();
+</script>
+</body>
+</html>
